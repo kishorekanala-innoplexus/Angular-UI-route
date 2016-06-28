@@ -1,1 +1,1 @@
-angular.module('myApp', ['ui.router','comp','angular.filter']);
+angular.module('myApp', ['ui.router','comp','angular.filter','fil']);
