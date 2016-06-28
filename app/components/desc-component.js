@@ -1,13 +1,14 @@
 angular.module('comp')
 	.component('detailDesc',{
 		templateUrl:'partials/desc.html',
-		controller:['$http','$stateParams','cartService','$scope', function($http,$stateParams,cartService,$scope){
+		controller:['$http','$stateParams','cartService','$scope','$state', function($http,$stateParams,cartService,$scope,$state){
 			var self = this;
 			self.$onInit = function(){
 				self.setImage = function setImage(imageUrl) {
 			      self.mainImageUrl = imageUrl;
 			    };
-				$http.get("phones/motorola-xoom-with-wi-fi.json").then(function(response){
+				self.id=$stateParams.id
+				$http.get(($stateParams.id ==='') ?"phones/motorola-xoom-with-wi-fi.json":"phones/"+$stateParams.id+".json").then(function(response){
 					self.phonedetail = response.data;
 					self.setImage(self.phonedetail.images[0]);
 				})
@@ -17,11 +18,16 @@ angular.module('comp')
 			  //subscribe items added callback
 			cartService.onItemsAdded(function(items){
 			    $scope.totalItems=items;
-			    console.log($scope.totalItems.id);
+			    //console.log($scope.totalItems.id);
 				 
+				 $state.go('state',{
+					company: $scope.totalItems.company,
+					id: $scope.totalItems.id
+				},{
+					notify:false
+				})
 			    
 			//console.log($scope.id);
-				self.id=$stateParams.id
 				self.setImage = function setImage(imageUrl) {
 			      self.mainImageUrl = imageUrl;
 			    };
