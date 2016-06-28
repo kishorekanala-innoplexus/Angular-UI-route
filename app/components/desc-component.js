@@ -31,7 +31,7 @@ angular.module('comp')
 				self.setImage = function setImage(imageUrl) {
 			      self.mainImageUrl = imageUrl;
 			    };
-				$http.get( ($scope.totalItems.id === undefined) ?"phones/motorola-xoom-with-wi-fi.json" : "phones/"+$scope.totalItems.id+".json").then(function(response){
+				$http.get("phones/"+$scope.totalItems.id+".json").then(function(response){
 					self.phonedetail = response.data;
 					self.setImage(self.phonedetail.images[0]);
 				})

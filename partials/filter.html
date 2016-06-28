@@ -26,7 +26,7 @@
 					    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
 					      <div class="panel-body pad ">
 					      	<div class="list-group mag">
-					      		<button  type="button" class="list-group-item " ng-click="$ctrl.comp([],'All','')">All</button>
+					      		<button  type="button" class="list-group-item " ng-click="$ctrl.comp([],'All','motorola-xoom-with-wi-fi')">All</button>
 					      	</div>
 					      	<div class="list-group mag" ng-repeat="phone in $ctrl.phones | unique:'company' ">
 								  <button  type="button" class="list-group-item " ng-click="$ctrl.comp(phone,phone.company,phone.id)">{{phone.company}}</button>

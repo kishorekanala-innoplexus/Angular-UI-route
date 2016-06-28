@@ -3,11 +3,22 @@ angular.module('comp')
 		templateUrl:'partials/filter.html',
 		controller: ['$http','cartService','$scope','$stateParams','$state', function($http,cartService,$scope,$stateParams,$state){
 			var self= this;
+			self.phoneList=[];
+			self.phones = [];
 			self.$onInit = function(){
 				$http.get('phones/phones.json').then(function(response){
-				self.phones=response.data;
-				self.phoneList= self.phones;
-			})
+					self.phones=response.data;
+					if($stateParams.company !== 'All')
+					{
+						for (var i = 0; i<self.phones.length; i++) {
+						if($stateParams.company === self.phones[i].company){
+							self.phoneList.push(self.phones[i]);
+						}
+					}
+					}else{
+						self.phoneList= self.phones;
+					}
+				})
 			}
 			self.all="All";
 			$scope.cartItems=0;
@@ -16,7 +27,7 @@ angular.module('comp')
   			cartService.onItemsAdded(function(items){
     			$scope.cartItems=items;
   			});
-			this.comp= function(phone,company,id){
+			self.comp= function(phone,company,id){
 				console.log(company);
 				self.phoneList=[];
 				if(company === 'All')
