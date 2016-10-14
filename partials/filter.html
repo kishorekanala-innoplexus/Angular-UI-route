@@ -45,7 +45,7 @@
 					    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
 					      <div class="panel-body pad mag">
 					      	<div class="list-group mag" style="padding-top:0px;" ng-repeat="phone in $ctrl.phoneList | filter: search">
-								<a  ng-click="addToCart(phone)"  class="list-group-item">{{phone.name}}</a>
+								<button type="button" ng-click="addToCart(phone)"  class="list-group-item">{{phone.name}}</button>
 							</div>
 					      </div>
 					    </div>
